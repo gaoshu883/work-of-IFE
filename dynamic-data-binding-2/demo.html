@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Observer</title>
+</head>
+
+<body>
+    <script src="Observer.js"></script>
+    <script>
+      var app1 = new Observer({
+          name: 'youngwind',
+          age: 25,
+          education: {
+            university: 'bupt',
+            major: 'computer'
+          }
+      });
+
+      app1.data.name = {
+        firstName: 'Xiaoming',
+        lastName: 'Wang'
+      };
+
+      app1.data.name.lastName;   // 你访问了 lastName
+
+      app1.data.name.firstName = 'Xiaolu';   // 你设置了 firstName，新的值为 Xiaolu
+
+      app1.$watch('age', function(age) {
+        console.log('我的年纪变了，现在已经是：' + age + '岁了');
+      });
+
+      app1.data.age = 100;   // 我的年纪变了，现在已经是：100岁了
+
+    </script>
+</body>
+
+</html>
