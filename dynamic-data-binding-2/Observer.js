@@ -48,7 +48,7 @@ Observer.prototype.convert = function(name, value) {
   });
 };
 
-/**
+/*
  * If certain property changes, the corresponding function will be invoked
  * @param {string} key - the property name
  * @param {function} cb - the callback function will be invoked when property value changes
