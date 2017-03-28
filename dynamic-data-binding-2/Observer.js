@@ -4,7 +4,6 @@
  */
 function Observer(data) {
   this.data = data;
-  this.callBacks = {};
   this.iterate(data);
 }
 // Recursively iterates the object
@@ -37,7 +36,8 @@ Observer.prototype.convert = function(name, value) {
     },
     set: function(newValue) {
       console.log('你设置了 ' + name + '，新的值为 ' + newValue);
-      self.$fire(name, newValue);
+      // Publish the message
+      Event.trigger(name, value, newValue);
       value = newValue;
       if (typeof newValue === 'object') {
         new Observer(newValue);
@@ -49,27 +49,10 @@ Observer.prototype.convert = function(name, value) {
 };
 
 /*
- * If certain property changes, the corresponding function will be invoked
+ * Subscribe for certain message
  * @param {string} key - the property name
  * @param {function} cb - the callback function will be invoked when property value changes
  */
 Observer.prototype.$watch = function(key, cb) {
-  if (this.callBacks[key] === undefined) {
-    this.callBacks[key] = [cb];
-  } else {
-    this.callBacks[key].push(cb);
-  }
-};
-
-/*
- * Triggers all callbacks which register on the certain property
- * @param {string} key - the property name
- * @param {arbitrary type} value - the new value that will be set to the property
- */
-Observer.prototype.$fire = function(key,value) {
-  if (key in this.callBacks) {
-    this.callBacks[key].forEach(function(item) {
-      item(value);
-    });
-  }
+  Event.listen(key, cb);
 };
