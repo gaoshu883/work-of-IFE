@@ -4,12 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Observer</title>
+    <link rel="stylesheet" href="../public/css/shCore.css">
+    <link rel="stylesheet" href="../public/css/shCoreDefault.css">
+    <style>
+      h1 {
+        font-size: 1.5rem;
+        color: #268bd2;
+      }
+      .small {
+        font-size: 0.75rem;
+      }
+      .inline {
+        display: inline-block;
+        vertical-align: bottom;
+        margin: 1rem 0;
+      }
+    </style>
 </head>
 
 <body>
+    <div class="code-container">
+      <h1 class="inline">示例代码</h1>
+      <p class="small inline">-- 请打开控制台调试代码</p>
+      <code>
+        <pre class="brush: js">
+          var app1 = new Observer({
+              name: 'youngwind',
+              age: 25,
+              education: {
+                university: 'bupt',
+                major: 'computer'
+              }
+          });
+
+          // 设置name为对象类型
+          app1.data.name = {
+            firstName: 'Xiaoming',
+            lastName: 'Wang'
+          };
+
+          app1.data.name.lastName;   // 你访问了 lastName
+
+          app1.data.name.firstName = 'Xiaolu';   // 你设置了 firstName，新的值为 Xiaolu
+
+          app1.$watch('age', function(oldage, age) {
+            console.log('我的年纪变了，现在已经是' + age + '岁了,之前是' + oldage + '岁');
+          });
+
+          app1.data.age = 100;   // 我的年纪变了，现在已经是100岁了,之前是25岁
+        </pre>
+      </code>
+    </div>
+
+    <script src="../public/js/shCore.js"></script>
+    <script src="../public/js/shBrushJScript.js"></script>
     <script src="Event.js"></script>
     <script src="Observer.js"></script>
     <script>
+      SyntaxHighlighter.all();
+
       var app1 = new Observer({
           name: 'youngwind',
           age: 25,
@@ -19,6 +72,7 @@
           }
       });
 
+      // 设置name为对象类型
       app1.data.name = {
         firstName: 'Xiaoming',
         lastName: 'Wang'
@@ -29,10 +83,10 @@
       app1.data.name.firstName = 'Xiaolu';   // 你设置了 firstName，新的值为 Xiaolu
 
       app1.$watch('age', function(oldage, age) {
-        console.log('我的年纪变了，现在已经是：' + age + '岁了,之前是' + oldage + '岁');
+        console.log('我的年纪变了，现在已经是' + age + '岁了,之前是' + oldage + '岁');
       });
 
-      app1.data.age = 100;   // 我的年纪变了，现在已经是：100岁了
+      app1.data.age = 100;   // 我的年纪变了，现在已经是100岁了,之前是25岁
 
     </script>
 </body>
