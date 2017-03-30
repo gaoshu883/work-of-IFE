@@ -27,31 +27,14 @@
       <h1 class="inline">示例代码</h1>
       <p class="small inline">-- 请打开控制台调试代码</p>
       <code>
-        <pre class="brush: js">
-            var app1 = new Observer({
-                name: 'youngwind',
-                age: 25
-            });
-
-            var app2 = new Observer({
-                university: 'bupt',
-                major: 'computer'
-            });
-
-            app1.data.name; // 你访问了 name
-            app1.data.age = 100; // 你设置了 age，新的值为 100
-            app2.data.university; // 你访问了 university
-            app2.data.major = 'science'; // 你设置了 major，新的值为 science
-        </pre>
+        <pre id="demoPre" class="brush: js"></pre>
       </code>
     </div>
 
     <script src="../public/js/shCore.js"></script>
     <script src="../public/js/shBrushJScript.js"></script>
     <script src="Observer.js"></script>
-    <script>
-      SyntaxHighlighter.all();
-
+    <script id="demo">
       var app1 = new Observer({
           name: 'youngwind',
           age: 25
@@ -66,6 +49,13 @@
       app1.data.age = 100; // 你设置了 age，新的值为 100
       app2.data.university; // 你访问了 university
       app2.data.major = 'science'; // 你设置了 major，新的值为 science
+    </script>
+    <script>
+      SyntaxHighlighter.all();
+
+      var demo = document.getElementById('demo');
+      var demoPre = document.getElementById('demoPre');
+      demoPre.innerHTML = demo.innerHTML;
     </script>
 </body>
 
