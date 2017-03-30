@@ -37,7 +37,8 @@ Observer.prototype.convert = function(name, value) {
     set: function(newValue) {
       console.log('你设置了 ' + name + '，新的值为 ' + newValue);
       // Publish the message
-      Event.trigger(name, value, newValue);
+      // `value` parameter is optional
+      Event.trigger(name, newValue, value);
       value = newValue;
       if (typeof newValue === 'object') {
         new Observer(newValue);

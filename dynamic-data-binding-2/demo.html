@@ -55,7 +55,7 @@
 
       app1.data.name.firstName = 'Xiaolu';   // 你设置了 firstName，新的值为 Xiaolu
 
-      app1.$watch('age', function(oldage, age) {
+      app1.$watch('age', function(age, oldage) {
         console.log('我的年纪变了，现在已经是' + age + '岁了,之前是' + oldage + '岁');
       });
 
